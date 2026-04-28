@@ -1,13 +1,28 @@
+const API = "https://fakeapi.net/products";
 
 
-const API = "https://fakeapi.net/products"
+function suma (data) {
+    let total = 0
+  data.forEach(function (value) {
+    total += value.price;
+    
+  });
 
-async function fetchapi () {
-const response = await fetch(API)
+  console.log(`el total es ${total}`)
+}
 
-const data = await response.json()
+async function fetchapi() {
+  try {
+    const response = await fetch(API);
+    const data = await response.json();
 
-console.log(data)
+    suma(data.data)
+
+  } catch (error) {
+    console.error("Error al conectarse");
+  }
 }
 
 fetchapi()
+  
+
